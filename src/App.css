@@ -64,6 +64,7 @@ body{
 	display: flex;
 	justify-content: space-between;
 	margin: 5rem auto;
+	min-width: 1024px;
 }
 
 .main-container{
