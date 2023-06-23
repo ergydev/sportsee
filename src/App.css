@@ -54,6 +54,7 @@ a{
 /* BASE STYLE  */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import './components/Card/card.css';
 
 body{
 	font-family: 'Roboto', sans-serif;
@@ -116,6 +117,11 @@ body{
 	grid-row: 2;
 	grid-column: 1;
 	border-radius: 10px;
+	display: flex;
+}
+
+.stats:nth-child(1){
+	background-color: #FF0101; 
 }
 
 .infos{
@@ -126,3 +132,4 @@ body{
     flex-direction: column;
     justify-content: space-between;
 }
+

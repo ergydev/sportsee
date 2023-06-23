@@ -4,6 +4,7 @@ import Sidenav from './layout/Sidenav/Sidenav';
 import './App.css';
 
 import HealthStat from './components/HealthStat/HealthStat'
+import Card from './components/Card/Card';
 
 function App() {
   return (
@@ -19,7 +20,11 @@ function App() {
             </section>
             <section className="charts">
               <div className="activity"></div>
-              <div className="stats"></div>
+              <div className="stats">
+                <Card />
+                <Card  />
+                <Card  />
+              </div>
               <aside className='infos'>
                 <HealthStat cardIcon={require('./assets/calories-icon.png')} cardText="Calories" cardTitle='170Cal' />
                 <HealthStat cardIcon={require('./assets/protein-icon.png')} cardText="Protéines" cardTitle='170Cal' />
