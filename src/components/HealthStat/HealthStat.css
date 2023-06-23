@@ -1,0 +1,28 @@
+@import '../../App.css';
+
+.card{
+    display: flex;
+    align-items: center;
+    padding : 50px 0 50px 40px ;
+    background-color: #FBFBFB;
+    max-height: 124px;
+    width: 258px;
+    border-radius: 10px;
+}
+
+.card img{
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+.card__info--title{
+    color: #282D30;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card__info--text{
+    color: #74798C;
+}
