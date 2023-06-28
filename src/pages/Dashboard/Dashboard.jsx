@@ -1,11 +1,21 @@
-import Header from '../../layout/Header/Header';
-import Sidenav from '../../layout/Sidenav/Sidenav';
+import { useParams } from 'react-router-dom';
 import './dashboard.css';
 
+import useUserData from '../../services/hooks/useUserData';
+
+import Header from '../../layout/Header/Header';
+import Sidenav from '../../layout/Sidenav/Sidenav';
 import HealthStat from '../../components/HealthStat/HealthStat'
 import Card from '../../components/Card/Card';
 
-function Dashboard() {
+const Dashboard = () => {
+    const { id } = useParams()
+    const userId = parseInt(id, 10)
+    const { userData } = useUserData(userId)
+    const firstName = userData && userData.data && userData.data.userInfos && userData.data.userInfos.firstName;
+    console.log(userData)
+    console.log(firstName)
+
     return (
         <div>
             <Header />
@@ -14,7 +24,7 @@ function Dashboard() {
                 <div className="App">
                     <div className="container">
                         <section className="title">
-                            <h1>Bonjour <span className='user_name'>Thomas</span></h1>
+                            <h1>Bonjour <span className='user_name'>{firstName ?? ''}</span></h1>
                             <p className='title__text'>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
                         </section>
                         <section className="charts">
@@ -36,6 +46,7 @@ function Dashboard() {
             </div>
         </div>
     )
+
 }
 
 export default Dashboard
