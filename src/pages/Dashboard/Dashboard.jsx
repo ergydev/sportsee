@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import './dashboard.css';
 
 import useUserData from '../../services/hooks/useUserData';
+import useUserActivity from '../../services/hooks/useUserActivity';
 
 import Header from '../../layout/Header/Header';
 import Sidenav from '../../layout/Sidenav/Sidenav';
@@ -13,8 +14,10 @@ const Dashboard = () => {
     const userId = parseInt(id, 10)
     const { userData } = useUserData(userId)
     const firstName = userData && userData.data && userData.data.userInfos && userData.data.userInfos.firstName;
+    const { userActivity } = useUserActivity(userId)
     console.log(userData)
     console.log(firstName)
+    console.log(userActivity)
 
     return (
         <div>
