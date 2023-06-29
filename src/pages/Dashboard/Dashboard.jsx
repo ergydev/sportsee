@@ -3,6 +3,8 @@ import './dashboard.css';
 
 import useUserData from '../../services/hooks/useUserData';
 import useUserActivity from '../../services/hooks/useUserActivity';
+import useTodayScore from '../../services/hooks/useTodayScore';
+import useUserPerformance from '../../services/hooks/useUserPerformance';
 
 import Header from '../../layout/Header/Header';
 import Sidenav from '../../layout/Sidenav/Sidenav';
@@ -10,15 +12,34 @@ import HealthStat from '../../components/HealthStat/HealthStat'
 import Card from '../../components/Card/Card';
 
 const Dashboard = () => {
+    //get the id 
     const { id } = useParams()
     const userId = parseInt(id, 10)
     const { userData } = useUserData(userId)
-    const firstName = userData && userData.data && userData.data.userInfos && userData.data.userInfos.firstName;
-    const { userActivity } = useUserActivity(userId)
-    console.log(userData)
-    console.log(firstName)
-    console.log(userActivity)
+    console.log('data ', userData)
 
+    // get the firstname & today score completion
+    const firstName = userData && userData.data && userData.data.userInfos && userData.data.userInfos.firstName;
+    console.log('prénom ', firstName)
+
+    const userScore = userData && userData.data && userData.data.todayScore
+    const userScorePercentage =  userScore ? Math.round(userScore * 100) : 0
+    console.log('TodayScore ', userScorePercentage)
+
+    const { userActivity } = useUserActivity(userId)
+    console.log('Activity ', userActivity)
+
+    const { userPerformance } = useUserPerformance(userId)
+    console.log('Performance ', userPerformance)
+
+    //get keyDatas 
+    const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userData?.data?.keyData || {}
+    console.log(calorieCount)
+    console.log(proteinCount)
+    console.log(carbohydrateCount)
+    console.log(lipidCount)
+
+ 
     return (
         <div>
             <Header />
