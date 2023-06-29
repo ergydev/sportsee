@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 
-const useUserActivity = (userId) => {
-    const [userActivity, setUserActivity] = useState(null)
+const useUserPerformance = (userId) => {
+    const [userPerformance, setUserPerformance] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
     useEffect(() => {
-        const fetchUserActivity = async () => {
+        const fetchUserSession = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/user/${userId}/activity`)
+                const response = await fetch(`http://localhost:3000/user/${userId}/performance`)
                 if(response.ok){
                     const data = await response.json()
-                    setUserActivity(data)
+                    setUserPerformance(data)
                     setLoading(false)
                 } else {
                     setError(true)
@@ -24,10 +24,10 @@ const useUserActivity = (userId) => {
             }
         }
 
-        fetchUserActivity()
+        fetchUserSession()
     }, [userId])
 
-    return { userActivity, loading, error }
+    return { userPerformance, loading, error }
 }
 
-export default useUserActivity
+export default useUserPerformance

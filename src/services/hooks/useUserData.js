@@ -8,7 +8,7 @@ const useUserData = (userId) => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/user/${userId}`, { mode: 'cors'})
+                const response = await fetch(`http://localhost:3000/user/${userId}`)
                 if(response.ok){
                     const data = await response.json()
                     setUserData(data)
