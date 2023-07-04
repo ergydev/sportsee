@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import BarsChart from '../../components/BarsChart/BarsChart';
 import './dashboard.css';
 
 import useUserData from '../../services/hooks/useUserData';
@@ -23,10 +24,11 @@ const Dashboard = () => {
     console.log('prénom ', firstName)
 
     const userScore = userData && userData.data && userData.data.todayScore
-    const userScorePercentage =  userScore ? Math.round(userScore * 100) : 0
+    const userScorePercentage = userScore ? Math.round(userScore * 100) : 0
     console.log('TodayScore ', userScorePercentage)
 
     const { userActivity } = useUserActivity(userId)
+
     console.log('Activity ', userActivity)
 
     const { userPerformance } = useUserPerformance(userId)
@@ -34,12 +36,14 @@ const Dashboard = () => {
 
     //get keyDatas 
     const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userData?.data?.keyData || {}
-    console.log(calorieCount)
-    console.log(proteinCount)
-    console.log(carbohydrateCount)
-    console.log(lipidCount)
 
- 
+
+    // const activityData = [
+    //     { name: 'Calories brûlées (Kcal)', value: calorieCount},
+    //     { name: }
+    // ]
+
+
     return (
         <div>
             <Header />
@@ -52,17 +56,19 @@ const Dashboard = () => {
                             <p className='title__text'>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
                         </section>
                         <section className="charts">
-                            <div className="activity"></div>
+                            <div className="activity">
+                                <BarsChart data={userActivity} />
+                            </div>
                             <div className="stats">
                                 <Card />
                                 <Card />
                                 <Card />
                             </div>
                             <aside className='infos'>
-                                <HealthStat cardIcon={require('../../assets/calories-icon.png')} cardText="Calories" cardTitle='170Cal' />
-                                <HealthStat cardIcon={require('../../assets/protein-icon.png')} cardText="Protéines" cardTitle='170Cal' />
-                                <HealthStat cardIcon={require('../../assets/carbs-icon.png')} cardText="Glucides" cardTitle='170Cal' />
-                                <HealthStat cardIcon={require('../../assets/fat-icon.png')} cardText="Lipides" cardTitle='170Cal' />
+                                <HealthStat cardIcon={require('../../assets/calories-icon.png')} cardText="Calories" cardTitle={calorieCount + 'kCal'} />
+                                <HealthStat cardIcon={require('../../assets/protein-icon.png')} cardText="Protéines" cardTitle={proteinCount + 'g'} />
+                                <HealthStat cardIcon={require('../../assets/carbs-icon.png')} cardText="Glucides" cardTitle={carbohydrateCount + 'g'} />
+                                <HealthStat cardIcon={require('../../assets/fat-icon.png')} cardText="Lipides" cardTitle={lipidCount + 'g'} />
                             </aside>
                         </section>
                     </div>

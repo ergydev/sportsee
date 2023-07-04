@@ -102,7 +102,7 @@ body{
 }
 
 .activity{
-	background-color: #FF0101;
+	/* background-color: #FF0101; */
 	width: 835px;
 	height: 320px;
 	grid-row: 1;
