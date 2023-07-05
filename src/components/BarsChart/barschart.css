@@ -1,0 +1,13 @@
+@import '../../index.css';
+
+.barstchart__title{
+    font-weight: 500;
+    font-size: 15px;
+    color: #20253A;
+}
+
+.recharts-legend-item-text{
+    color: #74798c;
+    font-size: 14px;
+    font-weight: 500;
+}

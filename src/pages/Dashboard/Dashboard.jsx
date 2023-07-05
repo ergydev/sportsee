@@ -28,21 +28,17 @@ const Dashboard = () => {
     console.log('TodayScore ', userScorePercentage)
 
     const { userActivity } = useUserActivity(userId)
-
+    const sessions = userActivity && userActivity.data && userActivity.data.sessions
+    
     console.log('Activity ', userActivity)
+    console.log("test : " , sessions)
+  
 
     const { userPerformance } = useUserPerformance(userId)
     console.log('Performance ', userPerformance)
 
     //get keyDatas 
     const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userData?.data?.keyData || {}
-
-
-    // const activityData = [
-    //     { name: 'Calories brûlées (Kcal)', value: calorieCount},
-    //     { name: }
-    // ]
-
 
     return (
         <div>
@@ -57,7 +53,7 @@ const Dashboard = () => {
                         </section>
                         <section className="charts">
                             <div className="activity">
-                                <BarsChart data={userActivity} />
+                                <BarsChart sessions={sessions} />
                             </div>
                             <div className="stats">
                                 <Card />

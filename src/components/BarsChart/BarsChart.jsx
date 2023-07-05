@@ -2,21 +2,29 @@ import './barschart.css'
 import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer, CartesianGrid } from 'recharts'
 
 
-function BarsChart() {
+function BarsChart({ sessions }) {
     
-    const data = [{name: 'Activités', calories: 1930, protéines: 155}]
+    if (!sessions || sessions.length === 0) {
+        return <div>Aucune donnée disponible.</div>;
+    }
+
+    const data = sessions.map((session, index) => ({
+        name: index +1,
+        kilogram: session.kilogram,
+        calories: session.calories
+    }))
 
     return (
         <div className='barschart__container'>
             <div className="barschart__container__text">
                 <h3 className='barstchart__title'> Activité quotidienne</h3>
-                <div className='barschart__legend'>
-                    <ResponsiveContainer>
-                        <BarChart width="835" height="320">
-                            <Legend />
+                <div className='barschart__chart--container'>
+                    <ResponsiveContainer width={835} height={250}>
+                        <BarChart data={data}  >
+                            <Legend verticalAlign='top' align='right' iconType='circle' iconSize='8' height={40}/>
                             <CartesianGrid strokeDasharray="2 2" horizontal={true} vertical={false} />
                             <XAxis dataKey="name" tickLine={false} axisLine={false} />
-                            <YAxis orientation="right" tickLine={false} axisLine={false} />
+                            <YAxis orientation="right" tickLine={false}  axisLine={false}  />
                             <Tooltip
                                 animationEasing='ease-out'
                                 // content={} 
@@ -25,14 +33,12 @@ function BarsChart() {
                             />
                             <Bar
                                 dataKey="kilogram"
-                                name='kg'
                                 fill='#282D30'
                                 radius={[10, 10, 0, 0]}
                                 barSize={10}
                             />
                             <Bar
                                 dataKey="calories"
-                                name='Kcal'
                                 fill='#E60000'
                                 radius={[10, 10, 0, 0]}
                                 barSize={10}
