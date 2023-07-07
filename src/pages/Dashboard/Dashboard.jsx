@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import BarsChart from '../../components/BarsChart/BarsChart';
 import LineChartComponent from '../../components/LineChartComponent/LineChartComponent';
+import Radar from '../../components/Radar/RadarComponent';
 import './dashboard.css';
 
 import useUserData from '../../services/hooks/useUserData';
@@ -58,7 +59,7 @@ const Dashboard = () => {
                             </div>
                             <div className="stats">
                                 <LineChartComponent />
-                                <Card />
+                                <Radar />
                                 <Card />
                             </div>
                             <aside className='infos'>
