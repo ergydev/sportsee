@@ -13,6 +13,18 @@ function BarsChart({ sessions }) {
         kilogram: session.kilogram,
         calories: session.calories
     }))
+    
+
+
+    const formatValue = (value, name) => {
+        if (name === 'kilogram') {
+            return `${value}kg`
+        }
+        if (name === 'calories') {
+            return `${value}Kcal`
+        }
+        return value
+    }
 
     return (
         <div className='barschart__container'>
@@ -21,15 +33,39 @@ function BarsChart({ sessions }) {
                 <div className='barschart__chart--container'>
                     <ResponsiveContainer width={835} height={250}>
                         <BarChart data={data}  >
-                            <Legend verticalAlign='top' align='right' iconType='circle' iconSize='8' height={40}/>
+                            <Legend 
+                                verticalAlign='top' 
+                                align='right' 
+                                iconType='circle' 
+                                iconSize='8' 
+                                height={80}
+                                payload={[
+                                    { value: "Poids (kg)", type: "circle" , color: '#282D30'},
+                                    { value: "Calories brûlées (Kcal)", type: "circle", color: '#E60000'},
+                                ]}
+                            />
                             <CartesianGrid strokeDasharray="2 2" horizontal={true} vertical={false} />
                             <XAxis dataKey="name" tickLine={false} axisLine={false} />
-                            <YAxis orientation="right" tickLine={false}  axisLine={false}  />
+                            <YAxis orientation="right" tickLine={false} axisLine={false}  type='number' domain={['kilogram', 'kilogram' + 10 ]} />
                             <Tooltip
                                 animationEasing='ease-out'
-                                // content={} 
                                 offset={40}
                                 wrapperStyle={{ outline: "none" }}
+                                formatter={formatValue}
+                                labelFormatter=''
+
+                                content={({ payload }) => {
+                                    if (payload && payload.length) {
+                                        const { kilogram, calories } = payload[0].payload
+                                        return (
+                                            <div className='custom-tooltip'>
+                                                <p>{`${kilogram}kg`}</p>
+                                                <p>{`${calories}Kcal`}</p>
+                                            </div>
+                                        )
+                                    }
+                                    return null
+                                }}
                             />
                             <Bar
                                 dataKey="kilogram"

@@ -6,8 +6,33 @@
     color: #20253A;
 }
 
+.recharts-default-legend{
+    padding-right: 2rem !important;
+}
+
+.recharts-default-legend li{
+    margin-left: 2rem;
+}
+
+.recharts-legend-item span{
+    color: #74798c !important;
+    padding-left: 10px;
+}
+
 .recharts-legend-item-text{
-    color: #74798c;
     font-size: 14px;
     font-weight: 500;
+}
+
+.custom-tooltip{
+    background-color: #E60000;
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+    font-weight: 500;
+    padding: 1rem;
+}
+
+.custom-tooltip p{
+    padding: 0.8rem 0;
 }
