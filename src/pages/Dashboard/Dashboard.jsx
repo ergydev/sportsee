@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom';
 import BarsChart from '../../components/BarsChart/BarsChart';
+import LineChartComponent from '../../components/LineChartComponent/LineChartComponent';
 import './dashboard.css';
 
 import useUserData from '../../services/hooks/useUserData';
 import useUserActivity from '../../services/hooks/useUserActivity';
-import useTodayScore from '../../services/hooks/useTodayScore';
+import useAverageSession from '../../services/hooks/useAverageSession'
 import useUserPerformance from '../../services/hooks/useUserPerformance';
 
 import Header from '../../layout/Header/Header';
@@ -29,13 +30,13 @@ const Dashboard = () => {
 
     const { userActivity } = useUserActivity(userId)
     const sessions = userActivity && userActivity.data && userActivity.data.sessions
-    
-    console.log('Activity ', userActivity)
-    console.log("test : " , sessions)
+    console.log("Sessions : " , sessions)
   
-
     const { userPerformance } = useUserPerformance(userId)
     console.log('Performance ', userPerformance)
+
+    const { userAverageSession } = useAverageSession(userId)
+    console.log('average :', userAverageSession)
 
     //get keyDatas 
     const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userData?.data?.keyData || {}
@@ -56,7 +57,7 @@ const Dashboard = () => {
                                 <BarsChart sessions={sessions} />
                             </div>
                             <div className="stats">
-                                <Card />
+                                <LineChartComponent />
                                 <Card />
                                 <Card />
                             </div>

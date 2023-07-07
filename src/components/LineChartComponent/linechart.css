@@ -1,0 +1,47 @@
+@import url(../../index.css);
+
+.average_session--wrapper{
+    max-width: 258px;
+    background-color: #E60000;
+    border-radius: 5px;
+    
+}
+
+.recharts-responsive-container{
+    padding: 5px;
+
+}
+
+.average_session--legend{
+    color: #fff;
+    font-weight: 500;
+    font-size: 15px;
+    opacity: 0.5;
+    line-height: 24px;
+    width: 147px;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.recharts-line{
+    opacity: 0.5;
+}
+
+.recharts-cartesian-axis-tick{
+    opacity: 0.5;
+    font-size: 12px;
+}
+
+.average_session--custom--tooltip{
+    background-color: #fff;
+    color: #000;
+    font-size: 8px;
+    width: 25px;
+    padding: 8px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.recharts-cartesian-axis{
+    max-width: 229px;
+}
