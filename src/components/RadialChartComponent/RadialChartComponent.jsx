@@ -1,14 +1,12 @@
 import { Legend, RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts';
 import './radialChartComponent.css'
 
-function RadialChartComponent() {
-
-    const todayScore = 0.15
+function RadialChartComponent({ userScorePercentage }) {
 
     const data = [  
         {
             name: 'score',
-            value: todayScore * 100
+            value: userScorePercentage
         }
     ]
 
@@ -53,7 +51,7 @@ function RadialChartComponent() {
                     <Legend verticalAlign='top' content={CustomLegend} />
                 </RadialBarChart>
             </ResponsiveContainer>
-            <RadialTarget scoreData={todayScore *100} />
+            <RadialTarget scoreData={userScorePercentage} />
         </div>
      );
 }

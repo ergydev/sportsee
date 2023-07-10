@@ -24,12 +24,9 @@ const Dashboard = () => {
 
     // get the firstname & today score completion
     const firstName = userData && userData.data && userData.data.userInfos && userData.data.userInfos.firstName;
-    console.log('prénom ', firstName)
 
-    const userScore = userData && userData.data && userData.data.todayScore
+    const userScore = userData && userData.data && (userData.data.todayScore || userData.data.score ) 
     const userScorePercentage = userScore ? Math.round(userScore * 100) : 0
-    console.log(userScore)
-    console.log('TodayScore ', userScorePercentage)
 
     const { userActivity } = useUserActivity(userId)
     const sessions = userActivity && userActivity.data && userActivity.data.sessions
@@ -62,7 +59,7 @@ const Dashboard = () => {
                             <div className="stats">
                                 <LineChartComponent />
                                 <Radar />
-                                <RadialChartComponent />
+                                <RadialChartComponent userScorePercentage={userScorePercentage} />
                             </div>
                             <aside className='infos'>
                                 <HealthStat cardIcon={require('../../assets/calories-icon.png')} cardText="Calories" cardTitle={calorieCount + 'kCal'} />
