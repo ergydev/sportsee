@@ -27,7 +27,7 @@ function RadarComponent() {
     return(
 
         <div className='radar__wrapper'>
-            <ResponsiveContainer width={229} height={220}>
+            <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={data} innerRadius={10} outerRadius={60} >
                     <PolarGrid 
                         gridType='polygon' 

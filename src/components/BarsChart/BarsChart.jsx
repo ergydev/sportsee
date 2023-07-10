@@ -31,7 +31,7 @@ function BarsChart({ sessions }) {
             <div className="barschart__container__text">
                 <h3 className='barstchart__title'> Activité quotidienne</h3>
                 <div className='barschart__chart--container'>
-                    <ResponsiveContainer width={835} height={250}>
+                    <ResponsiveContainer width="100%" height={250}>
                         <BarChart data={data}  >
                             <Legend 
                                 verticalAlign='top' 

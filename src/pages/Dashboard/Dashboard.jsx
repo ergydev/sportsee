@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import BarsChart from '../../components/BarsChart/BarsChart';
 import LineChartComponent from '../../components/LineChartComponent/LineChartComponent';
 import Radar from '../../components/Radar/RadarComponent';
+import RadialChartComponent from '../../components/RadialChartComponent/RadialChartComponent';
 import './dashboard.css';
 
 import useUserData from '../../services/hooks/useUserData';
@@ -27,6 +28,7 @@ const Dashboard = () => {
 
     const userScore = userData && userData.data && userData.data.todayScore
     const userScorePercentage = userScore ? Math.round(userScore * 100) : 0
+    console.log(userScore)
     console.log('TodayScore ', userScorePercentage)
 
     const { userActivity } = useUserActivity(userId)
@@ -60,7 +62,7 @@ const Dashboard = () => {
                             <div className="stats">
                                 <LineChartComponent />
                                 <Radar />
-                                <Card />
+                                <RadialChartComponent />
                             </div>
                             <aside className='infos'>
                                 <HealthStat cardIcon={require('../../assets/calories-icon.png')} cardText="Calories" cardTitle={calorieCount + 'kCal'} />

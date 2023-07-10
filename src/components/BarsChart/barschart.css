@@ -1,5 +1,9 @@
 @import '../../index.css';
 
+.barschart__container{
+    max-height: 250px;
+}
+
 .barstchart__title{
     font-weight: 500;
     font-size: 15px;
