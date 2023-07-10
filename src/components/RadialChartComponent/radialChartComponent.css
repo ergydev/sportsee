@@ -2,4 +2,34 @@
 
 .radial__wrapper{
     max-width: 289px;
+    background-color: #FBFBFB;
+    position: relative;
+}
+
+.target__radial-chart{
+    font-size: 18px;
+    width: 95px;
+    height: 56px;
+    text-align: center;
+    position: absolute;
+    top: 53%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+}
+
+.target__radial-chart--score{
+    font-weight: 700;
+    color: #282D30;
+    font-size: 28px;
+}
+
+.target__radial-chart--text{
+    color: #74798C;
+}
+
+.radial__title{
+    font-weight: 500;
+    color: #20253A;
+    font-size: 18px;
+    padding: 20px;
 }

@@ -112,13 +112,13 @@ body{
 }
 
 .stats{
-	background-color: blue;
 	width: 835px;
 	height: 263px;
 	grid-row: 2;
 	grid-column: 1;
 	border-radius: 10px;
 	display: flex;
+	justify-content: space-between;
 }
 
 .stats:nth-child(1){
