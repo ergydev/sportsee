@@ -13,7 +13,7 @@ import useUserPerformance from '../../services/hooks/useUserPerformance';
 import Header from '../../layout/Header/Header';
 import Sidenav from '../../layout/Sidenav/Sidenav';
 import HealthStat from '../../components/HealthStat/HealthStat'
-import Card from '../../components/Card/Card';
+
 
 const Dashboard = () => {
     //get the id 
@@ -30,13 +30,14 @@ const Dashboard = () => {
 
     const { userActivity } = useUserActivity(userId)
     const sessions = userActivity && userActivity.data && userActivity.data.sessions
-    console.log("Sessions : " , sessions)
   
     const { userPerformance } = useUserPerformance(userId)
-    console.log('Performance ', userPerformance)
 
     const { userAverageSession } = useAverageSession(userId)
-    console.log('average :', userAverageSession)
+    console.log('average:', userAverageSession)
+    console.log(useAverageSession(userId).userSession)
+    console.log(useAverageSession(userId))
+
 
     //get keyDatas 
     const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userData?.data?.keyData || {}
@@ -57,8 +58,9 @@ const Dashboard = () => {
                                 <BarsChart sessions={sessions} />
                             </div>
                             <div className="stats">
+                                {/* <LineChartComponent data={userAverageSession.sessions} /> */}
                                 <LineChartComponent />
-                                <Radar />
+                                <Radar userPerformance={userPerformance} />
                                 <RadialChartComponent userScorePercentage={userScorePercentage} />
                             </div>
                             <aside className='infos'>

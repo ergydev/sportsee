@@ -1,37 +1,42 @@
-import { ResponsiveContainer, LineChart, XAxis, Tooltip, Line, Legend, ReferenceArea } from 'recharts'
+import { ResponsiveContainer, LineChart, XAxis, Tooltip, Line, Legend } from 'recharts'
 import './linechart.css'
 
-function LineChartComponent()  {
+function LineChartComponent() {
 
     const data = [
         {
-            "name": "1",
-            "sessionLength": "30"
-        },
-        {
-            "name": "2",
-            "sessionLength": "40"
-        },
-        {
-            "name": "3",
-            "sessionLength": "50"
-        },
-        {
-            "name": "4",
-            "sessionLength": "30"
-        },
-        {
-            "name": "5",
-            "sessionLength": "30"
-        },
-        {
-            "name": "6",
-            "sessionLength": "50"
-        },
-        {
-            "name": "7",
-            "sessionLength": "50"
-        },
+            "userId": 12,
+            "sessions": [
+                {
+                    "day": 1,
+                    "sessionLength": 30
+                },
+                {
+                    "day": 2,
+                    "sessionLength": 23
+                },
+                {
+                    "day": 3,
+                    "sessionLength": 45
+                },
+                {
+                    "day": 4,
+                    "sessionLength": 50
+                },
+                {
+                    "day": 5,
+                    "sessionLength": 0
+                },
+                {
+                    "day": 6,
+                    "sessionLength": 0
+                },
+                {
+                    "day": 7,
+                    "sessionLength": 60
+                }
+            ]
+        }
     ]
 
     const DayOfWeek = (day) => {
@@ -47,32 +52,39 @@ function LineChartComponent()  {
         return dayMap[day] || day
     }
 
-    function renderLegend(){
-        return(
+    function renderLegend() {
+        return (
             <p className='average_session--legend'>Durée moyenne des sessions</p>
         )
     }
 
-    return(
+    const sessions = data[0].sessions
+
+    const dataSession = sessions.map((session) => ({
+        name: session.day,
+        sessionLength: session.sessionLength,
+    }));
+
+    return (
         <div className='average_session--wrapper'>
             <ResponsiveContainer width={229} height={263}>
-                <LineChart  data={data}>
+                <LineChart data={dataSession}>
                     <Legend verticalAlign='top' height={75} content={renderLegend} />
-                    <XAxis 
-                        dataKey="name" 
-                        tickLine={false} 
-                        tickFormatter={DayOfWeek} 
-                        axisLine={false} 
-                        tick={{ fill: '#fff' }} 
+                    <XAxis
+                        dataKey="name"
+                        tickLine={false}
+                        tickFormatter={DayOfWeek}
+                        axisLine={false}
+                        tick={{ fill: '#fff' }}
                     />
-                    <Tooltip 
+                    <Tooltip
                         animationEasing='ease-out'
                         offset={40}
                         wrapperStyle={{ outline: "none" }}
                         content={({ payload }) => {
-                            if(payload && payload.length) {
+                            if (payload && payload.length) {
                                 const { sessionLength } = payload[0].payload
-                                return(
+                                return (
                                     <div className='average_session--custom--tooltip'>
                                         <p> {`${sessionLength} min`} </p>
                                     </div>
