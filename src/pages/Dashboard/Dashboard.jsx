@@ -27,7 +27,6 @@ const Dashboard = () => {
 
     const userScore = userData && userData.data && (userData.data.todayScore || userData.data.score ) 
     const userScorePercentage = userScore ? Math.round(userScore * 100) : 0
-    console.log(userScorePercentage)
 
     const { userActivity } = useUserActivity(userId)
     const sessions = userActivity && userActivity.data && userActivity.data.sessions
@@ -36,8 +35,13 @@ const Dashboard = () => {
 
     const { userSession } = useAverageSession(userId)
 
-    //get keyDatas 
-    const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userData?.data?.keyData || {}
+    //get keyDatas, if there no datas, all the count are initialized at 0
+    const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userData?.data?.keyData ?? {
+        calorieCount: 0,
+        proteinCount: 0,
+        carbohydrateCount: 0,
+        lipidCount: 0
+    }
 
     return (
         <div>
