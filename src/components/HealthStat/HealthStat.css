@@ -3,7 +3,7 @@
 .card{
     display: flex;
     align-items: center;
-    padding : 50px 0 50px 40px ;
+    padding : 30px 0 30px 40px ;
     background-color: #FBFBFB;
     max-height: 124px;
     width: 258px;

@@ -11,7 +11,7 @@ const useAverageSession = (userId) => {
                 const response = await fetch(`http://localhost:3000/user/${userId}/average-sessions`)
                 if(response.ok){
                     const data = await response.json()
-                    setUserSession(data)
+                    setUserSession(data.data.sessions)
                     setLoading(false)
                 } else {
                     setError(true)

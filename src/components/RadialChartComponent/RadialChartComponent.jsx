@@ -34,8 +34,8 @@ function RadialChartComponent({ userScorePercentage }) {
                 <RadialBarChart
 
                     data={data}
-                    startAngle={270}
-                    endAngle={0}
+                    startAngle={-180}
+                    endAngle={-180 + -userScorePercentage}
                     innerRadius={65}
                     outerRadius={80}
                 >
@@ -46,6 +46,8 @@ function RadialChartComponent({ userScorePercentage }) {
                         background
                         strokeLinejoin='round'
                         cornerRadius={100}
+                        minAngle={15}
+                        clockWise
 
                     />
                     <Legend verticalAlign='top' content={CustomLegend} />

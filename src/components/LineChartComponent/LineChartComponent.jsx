@@ -1,43 +1,11 @@
-import { ResponsiveContainer, LineChart, XAxis, Tooltip, Line, Legend } from 'recharts'
+import { ResponsiveContainer, LineChart, XAxis, Tooltip, Line, Legend, YAxis } from 'recharts'
 import './linechart.css'
 
-function LineChartComponent() {
+function LineChartComponent({ sessions }) {
 
-    const data = [
-        {
-            "userId": 12,
-            "sessions": [
-                {
-                    "day": 1,
-                    "sessionLength": 30
-                },
-                {
-                    "day": 2,
-                    "sessionLength": 23
-                },
-                {
-                    "day": 3,
-                    "sessionLength": 45
-                },
-                {
-                    "day": 4,
-                    "sessionLength": 50
-                },
-                {
-                    "day": 5,
-                    "sessionLength": 0
-                },
-                {
-                    "day": 6,
-                    "sessionLength": 0
-                },
-                {
-                    "day": 7,
-                    "sessionLength": 60
-                }
-            ]
-        }
-    ]
+    if (!sessions || sessions.length === 0) {
+        return <div>Aucune donnée disponible.</div>;
+    }
 
     const DayOfWeek = (day) => {
         const dayMap = {
@@ -58,8 +26,6 @@ function LineChartComponent() {
         )
     }
 
-    const sessions = data[0].sessions
-
     const dataSession = sessions.map((session) => ({
         name: session.day,
         sessionLength: session.sessionLength,
@@ -76,6 +42,11 @@ function LineChartComponent() {
                         tickFormatter={DayOfWeek}
                         axisLine={false}
                         tick={{ fill: '#fff' }}
+                    />
+                    <YAxis 
+                        dataKey="sessionLength"
+                        domain={[0, "dataMax + 30"]}
+                        hide={true}
                     />
                     <Tooltip
                         animationEasing='ease-out'

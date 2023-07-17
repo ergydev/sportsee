@@ -36,7 +36,7 @@ function RadarComponent({ userPerformance }) {
 
         <div className='radar__wrapper'>
             <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={performanceData} innerRadius={10} outerRadius={60} >
+                <RadarChart data={performanceData}  cx="50%" cy="50%" outerRadius={65} >
                     <PolarGrid
                         gridType='polygon'
                         radialLines={false}
@@ -48,9 +48,11 @@ function RadarComponent({ userPerformance }) {
                         dataKey='kind'
                         tickFormatter={mapActivity}
                         tick={{ fill: '#fff' }}
+                        
+                        
                     />
                     <PolarRadiusAxis tick={false} axisLine={false} />
-                    <Radar name='' dataKey='value' fill='#E60000' fillOpacity={0.7} />
+                    <Radar  dataKey='value' fill='#E60000' fillOpacity={0.7} />
                 </RadarChart>
             </ResponsiveContainer>
         </div>

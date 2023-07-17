@@ -9,6 +9,15 @@
     align-items: center;
 }
 
+.recharts-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
 .recharts-polar-angle-axis-tick{
     font-size: 12px;
     text-transform: capitalize;

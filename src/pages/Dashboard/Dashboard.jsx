@@ -27,17 +27,14 @@ const Dashboard = () => {
 
     const userScore = userData && userData.data && (userData.data.todayScore || userData.data.score ) 
     const userScorePercentage = userScore ? Math.round(userScore * 100) : 0
+    console.log(userScorePercentage)
 
     const { userActivity } = useUserActivity(userId)
     const sessions = userActivity && userActivity.data && userActivity.data.sessions
   
     const { userPerformance } = useUserPerformance(userId)
 
-    const { userAverageSession } = useAverageSession(userId)
-    console.log('average:', userAverageSession)
-    console.log(useAverageSession(userId).userSession)
-    console.log(useAverageSession(userId))
-
+    const { userSession } = useAverageSession(userId)
 
     //get keyDatas 
     const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userData?.data?.keyData || {}
@@ -58,8 +55,7 @@ const Dashboard = () => {
                                 <BarsChart sessions={sessions} />
                             </div>
                             <div className="stats">
-                                {/* <LineChartComponent data={userAverageSession.sessions} /> */}
-                                <LineChartComponent />
+                                <LineChartComponent sessions={userSession} />
                                 <Radar userPerformance={userPerformance} />
                                 <RadialChartComponent userScorePercentage={userScorePercentage} />
                             </div>
