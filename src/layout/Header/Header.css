@@ -15,14 +15,31 @@ header nav{
 
 header nav .logo .logo-img img{
     width: 178px;
-    /* margin-left: 2rem; */
 }
 
 .nav__links{
     display: flex;
-    width: 994px;
+    min-width: 994px;
     font-size: 24px;
     font-weight: 500;
     justify-content: space-between;
 }
 
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+    header{
+        min-width: 1024px;
+    }
+
+
+    header nav .logo .logo-img img{
+        width: 120px;
+    }
+
+    .logo{
+        margin-right: 5px;
+    }
+
+    .nav__links{
+        min-width: 835px;
+    }
+}

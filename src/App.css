@@ -72,8 +72,9 @@ body{
 }
 
 .container{
-	width: 1126px;
-	max-height: 779px;
+	/* max-width: 1126px; */
+	min-width: 1024px;
+	min-height: 779px;
 }
 
 .title{
@@ -134,3 +135,43 @@ body{
     justify-content: space-between;
 }
 
+/* media queries  */
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+
+
+
+	.App{
+		min-width: 850px;
+		margin: 2rem auto;
+	}
+	
+	.title{
+		margin-bottom: 4rem;
+	}
+	
+	.container{
+		min-width: 850px;
+		margin: 0 20px;
+	}
+
+	.charts{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.stats{
+		margin-top: 2rem;
+	}
+
+	.infos{
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 20px;
+		max-width: 835px;
+		margin-top: 2rem;
+	}
+
+
+}
