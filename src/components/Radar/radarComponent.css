@@ -3,7 +3,7 @@
 .radar__wrapper{
     background-color: #282D30;
     border-radius: 5px;
-    width: 258px;
+    width: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,10 +13,6 @@
     display: flex;
     justify-content: center;
 }
-
-
-
-
 
 .recharts-polar-angle-axis-tick{
     font-size: 12px;
