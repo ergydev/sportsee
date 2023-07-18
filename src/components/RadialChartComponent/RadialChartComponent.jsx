@@ -34,8 +34,8 @@ function RadialChartComponent({ userScorePercentage }) {
                 <RadialBarChart
 
                     data={data}
-                    startAngle={-180}
-                    endAngle={-180 + -userScorePercentage}
+                    startAngle={0}
+                    endAngle={-360 + -userScorePercentage}
                     innerRadius={65}
                     outerRadius={80}
                 >

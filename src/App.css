@@ -135,6 +135,25 @@ body{
     justify-content: space-between;
 }
 
+.error__wrapper{
+	display: flex;
+	margin: 3rem auto;
+	text-align: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.error--title{
+	font-size: 36px;
+	font-weight: bold;
+}
+
+.error--link{
+	color: #FF0101;
+	margin-top: 1rem;
+	font-size: 20px;
+}
+
 /* media queries  */
 
 @media screen and (min-width: 1024px) and (max-width: 1200px) {

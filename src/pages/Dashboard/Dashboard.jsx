@@ -43,6 +43,13 @@ const Dashboard = () => {
         lipidCount: 0
     }
 
+    if (!userData || userData.length === 0) {
+        return <div className='error__wrapper'>
+            <h1 className='error--title'>Oups! Aucune donnée n'est disponible.</h1>
+            <a href="/" className='error--link'>Retour à la page précédente</a>    
+        </div>;
+    }
+
     return (
         <div>
             <Header />
