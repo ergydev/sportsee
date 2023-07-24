@@ -10,6 +10,8 @@ function RadialChartComponent({ userScorePercentage }) {
         }
     ]
 
+    const endAngle = (userScorePercentage / 100) * 360
+
     function RadialTarget({ scoreData }){
         
         return (
@@ -21,6 +23,8 @@ function RadialChartComponent({ userScorePercentage }) {
             </div>
         )
     }
+
+
 
     function CustomLegend(){
         return(
@@ -35,7 +39,7 @@ function RadialChartComponent({ userScorePercentage }) {
 
                     data={data}
                     startAngle={0}
-                    endAngle={-360 + -userScorePercentage}
+                    endAngle={endAngle}
                     innerRadius={65}
                     outerRadius={80}
                 >
