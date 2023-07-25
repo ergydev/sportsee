@@ -1,7 +1,11 @@
+import { useEffect } from 'react'
+
 import useUserData from './useUserData'
 import { useUserActivity } from './useUserActivity'
 import { useAverageSession } from './useAverageSession'
 import { useUserPerformance } from './useUserPerformance'
+import mockedAPI from '../mock/mockedAPI'
+import { USER_MAIN_DATA } from '../mock/mockedData'
 
 const useDashboardData = (userId) => {
     const { userData } = useUserData(userId)
@@ -21,6 +25,22 @@ const useDashboardData = (userId) => {
         carbohydrateCount: 0,
         lipidCount: 0
     }
+
+    // verify if data are null and use mockedData 
+    // const isDataEmpty = 
+    //     !userData ||
+    //     !userData.data ||
+    //     !userActivity ||
+    //     !userActivity.data ||
+    //     !userPerformance ||
+    //     !userPerformance.data ||
+    //     !userSession||
+    //     !userSession.data;
+    // const dataToUse = isDataEmpty ? USER_MAIN_DATA.find((user) => user.id === userId) : null
+
+
+    // const data = dataToUse || userData.data
+    // const kind = dataToUse ? null : userPerformance.data.kind
 
 
     return {

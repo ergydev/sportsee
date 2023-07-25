@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { UserAvgApi } from "../api/userApi";
+import { UserAvgMockedApi } from "../mock/userMockedApi";
 
 const useAverageSession = (userId) => {
     const [userSession, setUserSession] = useState(null)
@@ -8,9 +10,10 @@ const useAverageSession = (userId) => {
     useEffect(() => {
         const fetchUserSession = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/user/${userId}/average-sessions`)
-                if(response.ok){
-                    const data = await response.json()
+                const data = await UserAvgApi.getUser(userId)
+                // use mocked data 
+                // const data = await UserAvgMockedApi.getUser(userId) 
+                if(data){
                     setUserSession(data.data.sessions)
                     setLoading(false)
                 } else {

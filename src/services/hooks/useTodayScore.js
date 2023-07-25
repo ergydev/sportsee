@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { UserApi } from "../api/userApi";
+
 
 const useTodayScore = (userId) => {
     const [userScore, setUserScore] = useState(null)
@@ -8,9 +10,8 @@ const useTodayScore = (userId) => {
     useEffect(() => {
         const fetchUserScore = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/user/${userId}`)
-                if(response.ok){
-                    const data = await response.json()
+                const data = await UserApi.getUser(userId) 
+                if(data){
                     const { todayScore } = data
                     setUserScore(todayScore)
                     setLoading(false)

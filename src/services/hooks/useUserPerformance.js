@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { UserPerformanceApi } from "../api/userApi";
+import { UserPerformanceMocked } from "../mock/userMockedApi";
 
 const useUserPerformance = (userId) => {
     const [userPerformance, setUserPerformance] = useState(null)
@@ -8,9 +10,10 @@ const useUserPerformance = (userId) => {
     useEffect(() => {
         const fetchUserSession = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/user/${userId}/performance`)
-                if(response.ok){
-                    const data = await response.json()
+                const data = await UserPerformanceApi.getUser(userId)
+                // use mocked data 
+                // const data = await UserPerformanceMocked.getUser(userId) 
+                if(data){
                     setUserPerformance(data)
                     setLoading(false)
                 } else {

@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { UserActivityApi } from "../api/userApi";
+import { UserActivityMocked } from "../mock/userMockedApi"
 
 const useUserActivity = (userId) => {
     const [userActivity, setUserActivity] = useState(null)
@@ -8,14 +10,15 @@ const useUserActivity = (userId) => {
     useEffect(() => {
         const fetchUserActivity = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/user/${userId}/activity`)
-                if(response.ok){
-                    const data = await response.json()
+                const data = await UserActivityApi.getUser(userId)
+                // use mocked data 
+                // const data = await UserActivityMocked.getUser(userId) 
+                if (data) {
                     setUserActivity(data)
                     setLoading(false)
                 } else {
                     setError(true)
-                } 
+                }
             } catch (error) {
                 console.error('Erreur lors de la récupération des données utilisateur')
                 setError(true)
@@ -38,7 +41,7 @@ const formatValue = (value, name) => {
         return `${value}Kcal`
     }
     return value
-} 
+}
 
 
-export  {useUserActivity , formatValue} 
+export { useUserActivity, formatValue } 

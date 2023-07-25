@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { UserApi } from "../api/userApi";
+import { UserMockedApi } from "../mock/userMockedApi";
 
 const useUserData = (userId) => {
     const [userData, setUserData] = useState(null)
@@ -8,9 +10,10 @@ const useUserData = (userId) => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/user/${userId}`)
-                if(response.ok){
-                    const data = await response.json()
+                const data = await UserApi.getUser(userId) 
+                // use mocked data 
+                // const data = await UserMockedApi.getUser(userId) 
+                if(data){
                     setUserData(data)
                     setLoading(false)
                 } else {
