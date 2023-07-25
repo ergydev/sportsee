@@ -31,4 +31,24 @@ const useTodayScore = (userId) => {
     return { userScore, loading, error}
 }
 
-export default useTodayScore
+
+
+function RadialTarget({ scoreData }){
+    
+    return (
+        <div className='target__radial-chart'>
+            <span className='target__radial-chart--score'> {`${scoreData}%`} </span>
+            <p className='target__radial-chart--text'>
+                {`de votre objectif`}
+            </p>
+        </div>
+    )
+}
+
+function CustomLegend(){
+    return(
+        <h3 className='radial__title'>Score</h3>
+    )
+}
+
+export  {useTodayScore, CustomLegend, RadialTarget}

@@ -27,7 +27,27 @@ const useUserPerformance = (userId) => {
         fetchUserSession()
     }, [userId])
 
-    return { userPerformance, loading, error }
+    // const data = userPerformance.data && userPerformance.data.data;
+    const data = userPerformance && userPerformance.data && userPerformance.data.data;
+    const kind = userPerformance && userPerformance.data && userPerformance.data.kind;
+
+
+    return { userPerformance, loading, error, data, kind }
 }
 
-export default useUserPerformance
+
+
+// map and convert activity name in french 
+function mapActivity(kind) {
+    const activityMap = {
+        1: "cardio",
+        2: "énergie",
+        3: "endurance",
+        4: "force",
+        5: "vitesse",
+        6: "intensité",
+    }
+    return activityMap[kind] || kind
+}
+
+export  { useUserPerformance, mapActivity }

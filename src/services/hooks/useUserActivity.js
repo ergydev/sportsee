@@ -30,4 +30,15 @@ const useUserActivity = (userId) => {
     return { userActivity, loading, error }
 }
 
-export default useUserActivity
+const formatValue = (value, name) => {
+    if (name === 'kilogram') {
+        return `${value}kg`
+    }
+    if (name === 'calories') {
+        return `${value}Kcal`
+    }
+    return value
+} 
+
+
+export  {useUserActivity , formatValue} 
