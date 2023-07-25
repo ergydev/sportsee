@@ -1,4 +1,5 @@
 import { ResponsiveContainer, LineChart, XAxis, Tooltip, Line, Legend, YAxis } from 'recharts'
+import { DayOfWeek, renderLegend } from '../../services/hooks/useAverageSession';
 import './linechart.css'
 
 function LineChartComponent({ sessions }) {
@@ -6,26 +7,7 @@ function LineChartComponent({ sessions }) {
     if (!sessions || sessions.length === 0) {
         return <div>Aucune donnée disponible.</div>;
     }
-
-    const DayOfWeek = (day) => {
-        const dayMap = {
-            "1": "L",
-            "2": "M",
-            "3": "M",
-            "4": "J",
-            "5": "V",
-            "6": "S",
-            "7": "D",
-        }
-        return dayMap[day] || day
-    }
-
-    function renderLegend() {
-        return (
-            <p className='average_session--legend'>Durée moyenne des sessions</p>
-        )
-    }
-
+    
     const dataSession = sessions.map((session) => ({
         name: session.day,
         sessionLength: session.sessionLength,

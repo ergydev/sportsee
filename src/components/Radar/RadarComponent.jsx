@@ -1,31 +1,18 @@
 import { PolarAngleAxis, PolarRadiusAxis, RadarChart, ResponsiveContainer, Radar, PolarGrid } from 'recharts'
+import { mapActivity } from '../../services/hooks/useUserPerformance';
 import './radarComponent.css'
 
 
 
 function RadarComponent({ userPerformance }) {
-
-    // const data = userPerformance.data && userPerformance.data.data;
-    const data = userPerformance && userPerformance.data && userPerformance.data.data;
-    const kind = userPerformance && userPerformance.data && userPerformance.data.kind;
-
-
+    
+    
+    const {data, kind } = userPerformance
+    
     if (!data || !kind) {
-        return null;
+        return null
     }
-
-    // map and convert activity name in french 
-    function mapActivity(kind) {
-        const activityMap = {
-            1: "cardio",
-            2: "énergie",
-            3: "endurance",
-            4: "force",
-            5: "vitesse",
-            6: "intensité",
-        }
-        return activityMap[kind] || kind
-    }
+    
 
     const performanceData = data.map((item) => ({
         kind: mapActivity(item.kind),

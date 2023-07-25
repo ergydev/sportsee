@@ -1,14 +1,10 @@
 import { useParams } from 'react-router-dom';
 import BarsChart from '../../components/BarsChart/BarsChart';
 import LineChartComponent from '../../components/LineChartComponent/LineChartComponent';
-import Radar from '../../components/Radar/RadarComponent';
+import RadarComponent from '../../components/Radar/RadarComponent';
 import RadialChartComponent from '../../components/RadialChartComponent/RadialChartComponent';
-import './dashboard.css';
 
-import useUserData from '../../services/hooks/useUserData';
-import useUserActivity from '../../services/hooks/useUserActivity';
-import useAverageSession from '../../services/hooks/useAverageSession'
-import useUserPerformance from '../../services/hooks/useUserPerformance';
+import useDashboardData from '../../services/hooks/useDashboardData';
 
 import Header from '../../layout/Header/Header';
 import Sidenav from '../../layout/Sidenav/Sidenav';
@@ -19,34 +15,23 @@ const Dashboard = () => {
     //get the id 
     const { id } = useParams()
     const userId = parseInt(id, 10)
-    const { userData } = useUserData(userId)
-    console.log('data ', userData)
-
-    // get the firstname & today score completion
-    const firstName = userData && userData.data && userData.data.userInfos && userData.data.userInfos.firstName;
-
-    const userScore = userData && userData.data && (userData.data.todayScore || userData.data.score ) 
-    const userScorePercentage = userScore ? Math.round(userScore * 100) : 0
-
-    const { userActivity } = useUserActivity(userId)
-    const sessions = userActivity && userActivity.data && userActivity.data.sessions
-  
-    const { userPerformance } = useUserPerformance(userId)
-
-    const { userSession } = useAverageSession(userId)
-
-    //get keyDatas, if there no datas, all the count are initialized at 0
-    const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userData?.data?.keyData ?? {
-        calorieCount: 0,
-        proteinCount: 0,
-        carbohydrateCount: 0,
-        lipidCount: 0
-    }
+    const {
+        userData,
+        userPerformance,
+        userSession,
+        calorieCount,
+        proteinCount,
+        carbohydrateCount,
+        lipidCount,
+        firstName,
+        sessions,
+        userScorePercentage
+    } = useDashboardData(userId)
 
     if (!userData || userData.length === 0) {
         return <div className='error__wrapper'>
             <h1 className='error--title'>Oups! Aucune donnée n'est disponible.</h1>
-            <a href="/" className='error--link'>Retour à la page précédente</a>    
+            <a href="/" className='error--link'>Retour à la page précédente</a>
         </div>;
     }
 
@@ -67,7 +52,11 @@ const Dashboard = () => {
                             </div>
                             <div className="stats">
                                 <LineChartComponent sessions={userSession} />
-                                <Radar userPerformance={userPerformance} />
+
+                                {userPerformance && userPerformance.data && (
+                                    <RadarComponent userPerformance={userPerformance.data} />
+                                )}
+
                                 <RadialChartComponent userScorePercentage={userScorePercentage} />
                             </div>
                             <aside className='infos'>

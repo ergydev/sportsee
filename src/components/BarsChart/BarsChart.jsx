@@ -1,4 +1,5 @@
 import './barschart.css'
+import { formatValue } from '../../services/hooks/useUserActivity';
 import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer, CartesianGrid } from 'recharts'
 
 
@@ -8,24 +9,15 @@ function BarsChart({ sessions }) {
         return <div>Aucune donnée disponible.</div>;
     }
 
-    const data = sessions.map((session, index) => ({
-        name: index +1,
-        kilogram: session.kilogram,
-        calories: session.calories
-    }))
+    const data = sessions.map((session) => {
+        const day = session.day.split("-")[2]
+        return{
+            name: day,
+            kilogram: session.kilogram,
+            calories: session.calories
+        }
+    })
     
-
-
-    const formatValue = (value, name) => {
-        if (name === 'kilogram') {
-            return `${value}kg`
-        }
-        if (name === 'calories') {
-            return `${value}Kcal`
-        }
-        return value
-    }
-
     return (
         <div className='barschart__container'>
             <div className="barschart__container__text">

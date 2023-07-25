@@ -1,4 +1,5 @@
 import { Legend, RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts';
+import { RadialTarget, CustomLegend } from '../../services/hooks/useTodayScore';
 import './radialChartComponent.css'
 
 function RadialChartComponent({ userScorePercentage }) {
@@ -11,26 +12,6 @@ function RadialChartComponent({ userScorePercentage }) {
     ]
 
     const endAngle = (userScorePercentage / 100) * 360
-
-    function RadialTarget({ scoreData }){
-        
-        return (
-            <div className='target__radial-chart'>
-                <span className='target__radial-chart--score'> {`${scoreData}%`} </span>
-                <p className='target__radial-chart--text'>
-                    {`de votre objectif`}
-                </p>
-            </div>
-        )
-    }
-
-
-
-    function CustomLegend(){
-        return(
-            <h3 className='radial__title'>Score</h3>
-        )
-    }
 
     return ( 
         <div className="radial__wrapper">
